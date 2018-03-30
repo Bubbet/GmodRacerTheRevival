@@ -51,12 +51,12 @@ function GM.StartRaceCountdown ( UMsg )
 	gui.EnableScreenClicker(false);
 	SplashSlow("gmracer/3");
 	surface.PlaySound(GAMEMODE.CountdownSound);
-	timer.Simple(1, SplashSlow, "gmracer/2");
-	timer.Simple(1, surface.PlaySound, GAMEMODE.CountdownSound);
-	timer.Simple(2, SplashSlow, "gmracer/1");
-	timer.Simple(2, surface.PlaySound, GAMEMODE.CountdownSound);
-	timer.Simple(3, SplashSlow, "gmracer/go");
-	timer.Simple(3, surface.PlaySound, GAMEMODE.GoSound);
+	timer.Simple(1, SplashSlow("gmracer/2")); -- some gay shit happening causing it to all fire at once
+	timer.Simple(1, surface.PlaySound(GAMEMODE.CountdownSound));
+	timer.Simple(2, SplashSlow("gmracer/1"));
+	timer.Simple(2, surface.PlaySound(GAMEMODE.CountdownSound));
+	timer.Simple(3, SplashSlow("gmracer/go"));
+	timer.Simple(3, surface.PlaySound(GAMEMODE.GoSound));
 	GAMEMODE.RaceStartTime = CurTime() + 5;
 	GAMEMODE:WipeClickZones();
 	LocalPlayer():SetNetworkedBool('IsCurrentlyRacing', true)
@@ -81,11 +81,12 @@ function GM.ShowGarageMenu ( UMsg )
 		
 		GAMEMODE.DeleteGarageInfo();
 		
-		GAMEMODE.GarageVehicle = ents.Create("prop_physics");
+		GAMEMODE.GarageVehicle = ents.CreateClientProp("models/buggy.mdl");
+		--GAMEMODE.GarageVehicle = ents.Create("prop_physics");
+		--GAMEMODE.GarageVehicle:SetModel("models/buggy.mdl");
 		if !GAMEMODE.GarageVehicle or !GAMEMODE.GarageVehicle:IsValid() then return false; end
 		GAMEMODE.GarageVehicle:SetPos(GAMEMODE.GarageVehicleLocation - Vector(0, 0, 30));
 		GAMEMODE.GarageVehicle:SetAngles(Angle(0, (GAMEMODE.GarageViewLocation - GAMEMODE.GarageVehicleLocation):Angle().y - 50, 0));
-		GAMEMODE.GarageVehicle:SetModel("models/buggy.mdl");
 		GAMEMODE.GarageVehicle:SetOwner(LocalPlayer());
 		GAMEMODE.GarageVehicle:Spawn();
 		

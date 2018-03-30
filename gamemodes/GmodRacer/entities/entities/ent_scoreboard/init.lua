@@ -28,7 +28,9 @@ function ENT:Think()
 		local ScoreboardDraw = ents.Create("scoreboard_draw");
 		if !ScoreboardDraw or !ScoreboardDraw:IsValid() then return false; end
 		ScoreboardDraw:SetPos(self:OBBCenter());
-		ScoreboardDraw:SetAngles((self:OBBCenter() - GAMEMODE.ScoreboardFaces[self.ID]:GetPos()):Normalize():Angle());
+		--print("Lua Error Info:")
+		--print(getmetatable(GAMEMODE.ScoreboardFaces[self.ID]))--:GetPos()) GAMEMODE.ScoreboardFaces[self.ID]:GetPos()
+		ScoreboardDraw:SetAngles((self:OBBCenter()-GAMEMODE.ScoreboardFaces[self.ID]:GetPos()):Angle());
 		ScoreboardDraw:Spawn();
 		ScoreboardDraw:SetNetworkedVector("OBB_Max", self:OBBMaxs());
 		ScoreboardDraw:SetNetworkedVector("OBB_Min", self:OBBMins());

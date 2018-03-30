@@ -88,8 +88,16 @@ function GM:DrawGarage ( )
 
 		if !self.FontsAreSetup_GM then
 			self.FontsAreSetup_GM = true;
-			surface.CreateFont( "Tahoma", LeftPerPlace / 6, 1000, true, false, "DermaDefault_Left" )
-			surface.CreateFont( "Tahoma", RightPerPlace / 6, 1000, true, false, "DermaDefault_Right" )
+			surface.CreateFont("DermaDefault_Left", {
+				font = "Tahoma",
+				size = LeftPerPlace / 6,
+				weight = 1000
+			})
+			surface.CreateFont("DermaDefault_Right", {
+				font = "Tahoma",
+				size = RightPerPlace / 6,
+				weight = 1000
+			})
 		end
 		
 		surface.SetFont("DermaDefault_Left");

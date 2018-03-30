@@ -34,28 +34,28 @@ function GM.RetrieveOffMapRecord ( Place, Map )
 	end
 end
 
---local Return, Success = mysql.query(SiteDatabaseConnection, "SELECT * FROM `gmr_records` WHERE `Map`='" .. game.GetMap() .. "' ORDER BY `Time` ASC LIMIT 10", mysql.QUERY_FIELDS);
-Success = nil
-GM.CompareTop10 = '';
-if Success then
-	for k, v in pairs(Return) do
-		GM.CompareTop10 = GM.CompareTop10 .. v['Time'];
-		SetGlobalString("MapRecords_" .. k .. "_Name", v['Name']);
-		SetGlobalInt("MapRecords_" .. k .. "_Time", v['Time']);
-	end
-else
-	for i = 0, 4 do
-		timer.Simple(i, function ( )
-			for k, v in pairs(player.GetAll()) do
-				v:PrintMessage(HUD_PRINTTALK, "MYSQL ERROR: RESTARTING MAP IN " .. (5 - i) .. " SECONDS.");
-			end
-		end
-		);
-	end
-	timer.Simple(5, function ( )
-		for k, v in pairs(player.GetAll()) do
-			v:PrintMessage(HUD_PRINTTALK, "lol nah");
-		end
-	end
-	);
-end
+-- local Return, Success = mysql.query(SiteDatabaseConnection, "SELECT * FROM `gmr_records` WHERE `Map`='" .. game.GetMap() .. "' ORDER BY `Time` ASC LIMIT 10", mysql.QUERY_FIELDS);
+-- Success = nil
+-- GM.CompareTop10 = '';
+-- if Success then
+	-- for k, v in pairs(Return) do
+		-- GM.CompareTop10 = GM.CompareTop10 .. v['Time'];
+		-- SetGlobalString("MapRecords_" .. k .. "_Name", v['Name']);
+		-- SetGlobalInt("MapRecords_" .. k .. "_Time", v['Time']);
+	-- end
+-- else
+	-- for i = 0, 4 do
+		-- timer.Simple(i, function ( )
+			-- for k, v in pairs(player.GetAll()) do
+				-- v:PrintMessage(HUD_PRINTTALK, "MYSQL ERROR: RESTARTING MAP IN " .. (5 - i) .. " SECONDS.");
+			-- end
+		-- end
+		-- );
+	-- end
+	-- timer.Simple(5, function ( )
+		-- for k, v in pairs(player.GetAll()) do
+			-- v:PrintMessage(HUD_PRINTTALK, "lol nah");
+		-- end
+	-- end
+	-- );
+-- end

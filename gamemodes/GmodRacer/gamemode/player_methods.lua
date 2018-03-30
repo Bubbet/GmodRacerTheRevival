@@ -110,7 +110,7 @@ function PlayerMetaTable:SpawnJeep ( Location, Angles )
 
 	local JeepTable = self:CompileJeepData();
 	
-	if !file.IsDir("../scripts/vehicles") then
+	if !file.IsDir("", "../scripts/vehicles") then
 		file.CreateDir(".\\garrysmod\\scripts\\vehicles");
 	end
 	

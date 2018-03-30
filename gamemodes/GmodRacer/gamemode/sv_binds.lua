@@ -360,8 +360,8 @@ function GM:ShowTeam ( Player )
 	end
 	
 	umsg.Start("ShowGarageMenu", Player);
-		umsg.Vector(self.GarageViewLocationEntity:GetPos());
-		umsg.Vector(self.GarageLocationEntity:GetPos());
+		umsg.Vector(GAMEMODE.GarageViewLocationEntity:GetPos());
+		umsg.Vector(GAMEMODE.GarageLocationEntity:GetPos());
 	umsg.End();
 end
 
