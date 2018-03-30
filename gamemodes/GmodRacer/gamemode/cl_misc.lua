@@ -51,7 +51,7 @@ function GM:CalcView( ply, origin, angles, fov )
 		
 	end
 
-	local ScriptedVehicle = ply:GetScriptedVehicle()
+	local ScriptedVehicle = ply:GetScriptedVehicle() --	local ScriptedVehicle = ply:GetVehicle():GetClass() Scripted Entitys dont exist anymore
 	if ( IsValid( ScriptedVehicle ) ) then
 	
 		// This code fucking sucks.
