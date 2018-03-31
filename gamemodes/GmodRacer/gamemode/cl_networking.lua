@@ -51,12 +51,12 @@ function GM.StartRaceCountdown ( UMsg )
 	gui.EnableScreenClicker(false);
 	SplashSlow("gmracer/3");
 	surface.PlaySound(GAMEMODE.CountdownSound);
-	timer.Simple(1, SplashSlow("gmracer/2")); -- some gay shit happening causing it to all fire at once
-	timer.Simple(1, surface.PlaySound(GAMEMODE.CountdownSound));
-	timer.Simple(2, SplashSlow("gmracer/1"));
-	timer.Simple(2, surface.PlaySound(GAMEMODE.CountdownSound));
-	timer.Simple(3, SplashSlow("gmracer/go"));
-	timer.Simple(3, surface.PlaySound(GAMEMODE.GoSound));
+	timer.Simple(1, function() SplashSlow("gmracer/2") end ); -- some gay shit happening causing it to all fire at once
+	timer.Simple(1, function() surface.PlaySound(GAMEMODE.CountdownSound) end );
+	timer.Simple(2, function() SplashSlow("gmracer/1") end );
+	timer.Simple(2, function() surface.PlaySound(GAMEMODE.CountdownSound) end );
+	timer.Simple(3, function() SplashSlow("gmracer/go") end );
+	timer.Simple(3, function() surface.PlaySound(GAMEMODE.GoSound) end );
 	GAMEMODE.RaceStartTime = CurTime() + 5;
 	GAMEMODE:WipeClickZones();
 	LocalPlayer():SetNetworkedBool('IsCurrentlyRacing', true)

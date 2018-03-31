@@ -29,6 +29,7 @@ end
 function GM:Initialize() self.BaseClass.Initialize( self ); end
 
 function GM:RegisterPart ( PartTable ) 
+	print("Loading Parts Started:")
 	Msg("Loaded " .. PartTable.Name .. " successfully.\n");
 
 	if CLIENT then
@@ -48,7 +49,9 @@ function GM:RegisterPart ( PartTable )
 end
 
 if SERVER or game.SinglePlayer()  then
-	for k, v in pairs(file.Find("*.lua", "../gamemodes/gmodracer/gamemode/parts/")) do
+	--print("Big Gay: " .. GM.FolderName .. "/gamemode/parts/")
+	local Folder = string.Replace( GM.Folder, "gamemodes/", "" );
+	for k, v in pairs(file.Find(Folder.."/gamemode/parts/*.lua", "LUA")) do
 		Part = {};
 				
 		if SERVER then AddCSLuaFile("parts/" .. v); end
@@ -57,7 +60,9 @@ if SERVER or game.SinglePlayer()  then
 		GM:RegisterPart(Part);
 	end
 elseif !game.SinglePlayer() and CLIENT then
-	for k, v in pairs(file.Find("*.lua", "../lua_temp/gmodracer/gamemode/parts/")) do
+	local Folder = string.Replace( GM.Folder, "gamemodes/", "" );
+	for k, v in pairs(file.Find(Folder.."/gamemode/parts/*.lua", "LUA")) do
+		print(k)
 		Part = {};
 		
 		include("parts/" .. v);

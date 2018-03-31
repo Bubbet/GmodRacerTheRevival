@@ -46,11 +46,15 @@ function GM:CalcView( ply, origin, angles, fov )
 		 gmod_vehicle_viewmode_hack:GetInt() == 1 
 		 /*&& ( !IsValid(wep) || !wep:IsWeaponVisible() )*/
 		) then
-		
-		return GAMEMODE:CalcVehicleThirdPersonView( Vehicle, ply, origin*1, angles*1, fov )
-		
+		--VehicleThirdPerson
+		return GAMEMODE:CalcVehicleView( Vehicle, ply, {
+		origin = origin*1, 
+		angles = angles*1, 
+		fov = fov
+		})
 	end
 
+	/*
 	local ScriptedVehicle = ply:GetScriptedVehicle() --	local ScriptedVehicle = ply:GetVehicle():GetClass() Scripted Entitys dont exist anymore
 	if ( IsValid( ScriptedVehicle ) ) then
 	
@@ -59,7 +63,8 @@ function GM:CalcView( ply, origin, angles, fov )
 		if ( view ) then return view end
 
 	end
-
+	*/
+	
 	local view = {}
 	view.origin 	= origin
 	view.angles		= angles

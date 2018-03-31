@@ -37,35 +37,35 @@ ChatName = "#1 | GMR";
 
 resource.AddFile("resource/fonts/lcd.ttf");
 
-for k, v in pairs(file.Find("*","../gamemodes/gmodracer/content/sound/gmracer/")) do
+for k, v in pairs(file.Find("*", "GAME" .. "sound/gmracer/")) do
 	resource.AddFile("sound/gmracer/" .. v);
 end
 
-for k, v in pairs(file.Find("*.wav", "../gamemodes/gmodracer/content/sound/vehicles/junker/")) do
+for k, v in pairs(file.Find("*.wav", "GAME" .. "sound/vehicles/junker/")) do
 	resource.AddFile("sound/vehicles/junker/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "../gamemodes/gmodracer/content/materials/gmracer/")) do
+for k, v in pairs(file.Find("*", "GAME" .. "materials/gmracer/")) do
 	resource.AddFile("materials/gmracer/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "../gamemodes/gmodracer/content/materials/maps/")) do
+for k, v in pairs(file.Find("*", "GAME" .. "materials/maps/")) do
 	resource.AddFile("materials/maps/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "../gamemodes/gmodracer/content/materials/buggy_reskins/")) do
+for k, v in pairs(file.Find("*", "GAME" .. "materials/buggy_reskins/")) do
 	resource.AddFile("materials/buggy_reskins/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "../gamemodes/gmodracer/content/models/carparts/")) do
+for k, v in pairs(file.Find("*", "GAME" .. "models/carparts/")) do
 	resource.AddFile("models/carparts/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "../gamemodes/gmodracer/content/materials/spoilers/")) do
+for k, v in pairs(file.Find("*", "GAME" .. "materials/spoilers/")) do
 	resource.AddFile("materials/spoilers/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "../gamemodes/gmodracer/content/materials/models/spoilers/")) do
+for k, v in pairs(file.Find("*", "GAME" .. "materials/models/spoilers/")) do
 	resource.AddFile("materials/models/spoilers/" .. v);
 end
 

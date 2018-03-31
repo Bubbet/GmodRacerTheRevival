@@ -346,7 +346,7 @@ function GM:Think ( )
 
 					v:SpawnJeep(self.VehicleSpawnPoints[self.NumRacers]:GetPos(), DoAng);
 					
-					--self.PlayerVehicles[v]:GetPhysicsObjectNum(0):EnableMotion(false);
+					self.PlayerVehicles[v]:GetPhysicsObject():EnableMotion(false);
 				end
 			end
 			timer.Simple(5, function ( ) self.SpawningRace = false; end);
