@@ -110,12 +110,12 @@ function PlayerMetaTable:SpawnJeep ( Location, Angles )
 
 	local JeepTable = self:CompileJeepData();
 	
-	if !file.IsDir("", "../scripts/vehicles") then
-		file.CreateDir(".\\garrysmod\\scripts\\vehicles");
+	if !file.IsDir("", "DATA/scripts/vehicles") then
+		file.CreateDir("scripts\\vehicles");
 	end
 	
 	local SaveFile = GAMEMODE.DefaultJeep;
-		
+
 	local SaveFile = string.gsub(SaveFile, "&VEHICLEWEIGHT&", JeepTable.Weight);
 	local SaveFile = string.gsub(SaveFile, "&HORSEPOWER&", JeepTable.Horsepower);
 	local SaveFile = string.gsub(SaveFile, "&MAXFORWARDSPEED&", JeepTable.ForwardMaximumMPH);
@@ -142,7 +142,7 @@ function PlayerMetaTable:SpawnJeep ( Location, Angles )
 	self:SetHealth(JeepTable.Health);
 	
 	
-	file.Write(".\\garrysmod\\scripts\\vehicles\\gmracer_" .. GAMEMODE.NumJeepsPlaced .. ".txt", SaveFile);
+	file.Write("scripts\\vehicles\\gmracer_" .. GAMEMODE.NumJeepsPlaced .. ".txt", SaveFile);
 	
 	
 	GAMEMODE.PlayerVehicles[self] = ents.Create("prop_vehicle_jeep_old");
@@ -154,14 +154,13 @@ function PlayerMetaTable:SpawnJeep ( Location, Angles )
 	
 	
 	
-	GAMEMODE.PlayerVehicles[self]:SetKeyValue("vehiclescript", "scripts/vehicles/gmracer_" .. GAMEMODE.NumJeepsPlaced .. ".txt");
+	GAMEMODE.PlayerVehicles[self]:SetKeyValue("vehiclescript", "../../../../../data/scripts/vehicles/gmracer_" .. GAMEMODE.NumJeepsPlaced .. ".txt");
 	GAMEMODE.PlayerVehicles[self]:SetModel("models/buggy.mdl");
-
-	
 	
 	GAMEMODE.PlayerVehicles[self]:SetPos(Location);
 	GAMEMODE.PlayerVehicles[self]:SetAngles(Angles);
 	GAMEMODE.PlayerVehicles[self]:Spawn();
+	print(GAMEMODE.PlayerVehicles[self]:GetKeyValues());
 	GAMEMODE.PlayerVehicles[self]:SetOwner(self);
 	
 	
@@ -214,7 +213,7 @@ function PlayerMetaTable:SpawnJeep ( Location, Angles )
 	
 	self:GetTable().PlayerVehicleBak = GAMEMODE.PlayerVehicles[self];
 
-	file.Delete(".\\garrysmod\\scripts\\vehicles\\gmracer_" .. GAMEMODE.NumJeepsPlaced .. ".txt");
+	file.Delete("scripts\\vehicles\\gmracer_" .. GAMEMODE.NumJeepsPlaced .. ".txt");
 	
 	
 end
