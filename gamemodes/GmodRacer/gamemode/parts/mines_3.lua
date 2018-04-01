@@ -38,7 +38,7 @@ function Part.Place ( Jeep, Forward, Back, Right, Left, Up, Down )
 	local Entity;
 	
 	if CLIENT then
-		Entity = ents.Create("prop_physics");
+		Entity = ents.CreateClientProp("models/Combine_Helicopter/helicopter_bomb01.mdl");
 	else
 		Entity = ents.Create("prop_dynamic_override");
 	end
@@ -57,7 +57,7 @@ function Part.Place ( Jeep, Forward, Back, Right, Left, Up, Down )
 	local Entity2;
 	
 	if CLIENT then
-		Entity2 = ents.Create("prop_physics");
+		Entity2 = ents.CreateClientProp("models/Combine_Helicopter/helicopter_bomb01.mdl");
 	else
 		Entity2 = ents.Create("prop_dynamic_override");
 	end
@@ -74,7 +74,7 @@ function Part.Place ( Jeep, Forward, Back, Right, Left, Up, Down )
 	local Entity3;
 	
 	if CLIENT then
-		Entity3 = ents.Create("prop_physics");
+		Entity3 = ents.CreateClientProp("models/Combine_Helicopter/helicopter_bomb01.mdl");
 	else
 		Entity3 = ents.Create("prop_dynamic_override");
 	end

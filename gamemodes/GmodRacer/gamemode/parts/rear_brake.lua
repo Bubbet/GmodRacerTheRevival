@@ -42,7 +42,7 @@ function Part.Place ( Jeep, Forward, Back, Right, Left, Up, Down )
 	local Entity;
 	
 	if CLIENT then
-		Entity = ents.Create("prop_physics");
+		Entity = ents.CreateClientProp("models/props_lab/reciever01b.mdl");
 	else
 		Entity = ents.Create("prop_dynamic_override");
 	end

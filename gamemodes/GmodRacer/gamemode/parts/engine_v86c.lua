@@ -37,7 +37,7 @@ Part.AddedArmor = 0;
 function Part.Place ( Jeep, Forward, Back, Right, Left, Up, Down )
 	local Entity;
 	if CLIENT then
-		Entity = ents.Create("prop_physics");
+		Entity = ents.CreateClientProp("models/Gibs/airboat_broken_engine.mdl");
 	else
 		Entity = ents.Create("prop_dynamic_override");
 	end
@@ -52,7 +52,7 @@ function Part.Place ( Jeep, Forward, Back, Right, Left, Up, Down )
 	
 	local Entity2;
 	if CLIENT then
-		Entity2 = ents.Create("prop_physics");
+		Entity = ents.CreateClientProp("models/Gibs/airboat_broken_engine.mdl");
 	else
 		Entity2 = ents.Create("prop_dynamic_override");
 	end

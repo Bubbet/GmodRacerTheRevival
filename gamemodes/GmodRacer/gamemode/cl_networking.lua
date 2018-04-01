@@ -26,7 +26,7 @@ end
 usermessage.Hook("ShowTrackMenu", GM.ShowTrackMenu);
 
 function GM.DeleteVehicleAddons ( )
-	for k, v in pairs(GAMEMODE.VehicleAddons) do if v:IsValid() then v:Remove() end end
+	for k, v in pairs(GAMEMODE.VehicleAddons) do if v:IsValid() then v:Remove() else v:SetPos(Vector(0,0,0)) end end 
 	GAMEMODE.VehicleAddons = {};
 end
 

@@ -17,7 +17,7 @@ function GM:KeyPress ( Player, Key )
 		if self.PlayerTables[Player].LastNOSTime + JeepData.BoostDelay + JeepData.BoostDuration <= CurTime() then
 			self.PlayerTables[Player].LastNOSTime = CurTime();
 			Player:SetNetworkedBool("IsTurboing", true);
-			timer.Simple(JeepData.BoostDuration, GAMEMODE.SetFalse, Player)
+			timer.Simple(JeepData.BoostDuration, function() GAMEMODE.SetFalse(Player) end )
 		end
 	elseif Key == IN_WALK and Player:InVehicle() and Player:GetUsedPart("Horn") != 0 and self.PlayerTables[Player].LastHornBlast + HornDelay <= CurTime() then
 		self.PlayerTables[Player].LastHornBlast = CurTime();

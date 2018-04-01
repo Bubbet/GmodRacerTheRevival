@@ -38,7 +38,7 @@ function Part.Place ( Jeep, Forward, Back, Right, Left, Up, Down )
 	local Entity;
 
 	if CLIENT then
-		Entity = ents.Create("prop_physics");
+		Entity = ents.CreateClientProp("models/props_vehicles/carparts_muffler01a.mdl");
 	else
 		Entity = ents.Create("prop_muffler");
 	end

@@ -37,7 +37,9 @@ ChatName = "#1 | GMR";
 
 resource.AddFile("resource/fonts/lcd.ttf");
 
-for k, v in pairs(file.Find("*", "GAME" .. "sound/gmracer/")) do
+local Folder = string.Replace( GM.Folder, "gamemodes/", "" );
+
+for k, v in pairs(file.Find(Folder.."sound/gmracer/*", "THIRDPARTY")) do
 	resource.AddFile("sound/gmracer/" .. v);
 end
 
@@ -45,7 +47,7 @@ for k, v in pairs(file.Find("*.wav", "GAME" .. "sound/vehicles/junker/")) do
 	resource.AddFile("sound/vehicles/junker/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "GAME" .. "materials/gmracer/")) do
+for k, v in pairs(file.Find("*", "GAME" .. "materials/gmracer/*")) do
 	resource.AddFile("materials/gmracer/" .. v);
 end
 
@@ -53,7 +55,7 @@ for k, v in pairs(file.Find("*", "GAME" .. "materials/maps/")) do
 	resource.AddFile("materials/maps/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "GAME" .. "materials/buggy_reskins/")) do
+for k, v in pairs(file.Find(Folder.."materials/buggy_reskins/*", "THIRDPARTY")) do
 	resource.AddFile("materials/buggy_reskins/" .. v);
 end
 
@@ -83,6 +85,12 @@ GM.SpawnCarParts = true;
 GM.AllowTestVehicle = true;
 GM.AllowVehicleDebris = true;
 
+concommand.Add("gmr_givecash", function(ply, argStr) 
+local arg1 = ply
+local arg2 = argStr
+local arg3 = true
+GAMEMODE.GiveCash(arg1,arg2,arg3) 
+end )
 function GM.GiveCash ( Player, Text, Bool )
 	local ExplodedString = string.Explode(" ", string.lower(Text));
 	
