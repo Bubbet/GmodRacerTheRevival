@@ -1,11 +1,11 @@
-Part.Name = "Radio";
-Part.Class = "Radio";
+Part.Name = "Heavy Duty Brake Pads ( Rear )";
+Part.Class = "Rear Brake Pads";
 Part.ClassLevel = 1;
-Part.Cost = 500;
-Part.Icon = "radio";
-Part.Description = "Plays techno while racing.";
+Part.Cost = 7500;
+Part.Icon = "brake_pad";
+Part.Description = "Increases braking on the rear axil.";
 Part.Sellable = true;
-Part.RequiredModels = {"models/props_lab/reciever01b.mdl"}
+Part.RequiredModels = {}
 
 // Engine Details
 Part.AddedWeight = 10; // Weight of the part.
@@ -27,7 +27,7 @@ Part.AddedTurningDegrees_Boost = 0; // steering cone at max boost speed (blend t
 
 // Braking Details
 Part.AddedForwardAxilBreaking = 0; // Default is .4
-Part.AddedRearAxilBreaking = 0; // Default is .7;
+Part.AddedRearAxilBreaking = .1; // Default is .7;
 
 // DM Stuff
 Part.AddedHealth = 0;
@@ -35,43 +35,5 @@ Part.AddedArmor = 0;
 
 
 function Part.Place ( Jeep, Forward, Back, Right, Left, Up, Down )
-	if SERVER and GAMEMODE.SpawningRace then
-		umsg.Start('StartRadioMusic', Jeep:GetOwner()); umsg.End();
-	end
-	
-	local Entity;
-	
-	if CLIENT then
-		Entity = ents.CreateClientProp("models/props_lab/reciever01b.mdl");
-	else
-		Entity = ents.Create("prop_dynamic_override");
-	end
-	
-	if !Entity or !Entity:IsValid() then return false; end
-	Entity:SetPos(Jeep:GetPos() + (Forward * 3) + (Right * 10) + Vector(0, 0, 43))
-	Entity:SetAngles(Jeep:GetAngles() - Angle(0, 90, 0));
-	Entity:SetModel("models/props_lab/reciever01b.mdl");
-	Entity:SetParent(Jeep);
-	Entity:Spawn();
-
-	return {Entity};
-end
-
-if CLIENT then
-
-	function GM.StartRadioMusic ( UMsg )
-		local Music = GAMEMODE.Music[math.random(table.Count(GAMEMODE.Music))];
-		timer.Simple(Music.Time + 3, GAMEMODE.StartRadioMusic);
-		RunConsoleCommand("stopsounds");
-		timer.Simple(3, GAMEMODE.PlayRadioMusic, Sound("gmracer/" .. Music.Name .. ".mp3"));
-	end
-	
-	usermessage.Hook('StartRadioMusic', GM.StartRadioMusic);
-	
-	function GM.PlayRadioMusic ( Music )
-		if LocalPlayer():IsRacing() then
-			surface.PlaySound(Music);
-		end
-	end
-
+	return {};
 end

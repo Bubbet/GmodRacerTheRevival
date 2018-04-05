@@ -1,9 +1,12 @@
 function GM.StartRace ( )
+	RunConsoleCommand("phys_timescale",1)
 	for k, v in pairs(player.GetAll()) do
 		umsg.Start("SetStartTime", v); umsg.End();
 		if v:GetNetworkedBool("IsCurrentlyRacing") then
 			if GAMEMODE.PlayerVehicles[v] and GAMEMODE.PlayerVehicles[v]:IsValid() and GAMEMODE.PlayerVehicles[v]:GetPhysicsObject():IsValid() then
-				GAMEMODE.PlayerVehicles[v]:GetPhysicsObject():EnableMotion(true);
+				--GAMEMODE.PlayerVehicles[v]:Freeze(true)
+				--GAMEMODE.PlayerVehicles[v]:GetPhysicsObjectNum(0):EnableMotion(true)
+				--GAMEMODE.PlayerVehicles[v]:SetKeyValue("BaseVehicle", "TurnOn")
 			end
 		end
 	end
@@ -105,6 +108,10 @@ function GM.FinishRace ( )
 end
 
 function GM:Think ( )
+	--for _,e in pairs(player.GetHumans()) do
+		--self:ShowSpare1(e);
+	--end
+
 	if GetGlobalBool("CurrentlyRacing") then
 		local AnyRacing = false;
 		for k, v in pairs(player.GetAll()) do
@@ -345,8 +352,10 @@ function GM:Think ( )
 					v:SetNetworkedBool("IsDestroyed", false);
 
 					v:SpawnJeep(self.VehicleSpawnPoints[self.NumRacers]:GetPos(), DoAng);
-					
-					self.PlayerVehicles[v]:GetPhysicsObject():EnableMotion(false);
+					RunConsoleCommand("phys_timescale",0)
+					--self.PlayerVehicles[v]:Freeze(false) -- MOVETYPE_VPHYSICS 
+					--self.PlayerVehicles[v]:GetPhysicsObjectNum(0):EnableMotion(false);
+					--self.PlayerVehicles[v]:SetKeyValue("BaseVehicle", "TurnOff")
 				end
 			end
 			timer.Simple(5, function ( ) self.SpawningRace = false; end);

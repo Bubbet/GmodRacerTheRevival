@@ -1,6 +1,6 @@
 "gmodracertherevival"
 {
-    "base"              ""
+    "base"              "base"
 	"title"		        "GmodRacer: The Revival"
     "menusystem"		"1"	
 	"maps"              "^gmr_"

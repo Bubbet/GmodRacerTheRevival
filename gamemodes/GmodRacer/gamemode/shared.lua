@@ -29,8 +29,8 @@ end
 function GM:Initialize() self.BaseClass.Initialize( self ); end
 
 function GM:RegisterPart ( PartTable ) 
-	print("Loading Parts Started:")
-	Msg("Loaded " .. PartTable.Name .. " successfully.\n");
+	--print("Loading Parts Started:")
+	--Msg("Loaded " .. PartTable.Name .. " successfully.\n");
 
 	if CLIENT then
 		PartTable.Material = surface.GetTextureID("gmracer/" .. PartTable.Icon);
@@ -62,7 +62,7 @@ if SERVER or game.SinglePlayer()  then
 elseif !game.SinglePlayer() and CLIENT then
 	local Folder = string.Replace( GM.Folder, "gamemodes/", "" );
 	for k, v in pairs(file.Find(Folder.."/gamemode/parts/*.lua", "LUA")) do
-		print(k)
+		--print(k)
 		Part = {};
 		
 		include("parts/" .. v);

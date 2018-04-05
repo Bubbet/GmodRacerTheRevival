@@ -52,7 +52,7 @@ function Part.Place ( Jeep, Forward, Back, Right, Left, Up, Down )
 	
 	local Entity2;
 	if CLIENT then
-		Entity = ents.CreateClientProp("models/Gibs/airboat_broken_engine.mdl");
+		Entity2 = ents.CreateClientProp("models/Gibs/airboat_broken_engine.mdl");
 	else
 		Entity2 = ents.Create("prop_dynamic_override");
 	end

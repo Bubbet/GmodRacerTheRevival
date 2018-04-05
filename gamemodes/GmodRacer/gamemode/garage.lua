@@ -141,6 +141,7 @@ function GM:DrawGarage ( )
 		if !self.ClickZonesSetup then
 			for k, v in pairs(GAMEMODE.VehicleAddons) do
 				if v and v:IsValid() then
+					v:SetNoDraw(true)
 					v:Remove();
 				end
 			end

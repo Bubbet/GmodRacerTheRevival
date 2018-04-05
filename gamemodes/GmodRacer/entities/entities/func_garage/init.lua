@@ -1,11 +1,12 @@
 ENT.Base = "base_brush"
 ENT.Type = "brush"
 
-function ENT:Initialize() end
+function ENT:Initialize() 
+	GAMEMODE.FuncGarageLocationEntity = self
+end
 
 function ENT:StartTouch( Ent )
 	if !Ent:IsValid() or !Ent:IsPlayer() then return false; end
-	
 	GAMEMODE.PlayerTables[Ent].InPGarage = true;
 end
 

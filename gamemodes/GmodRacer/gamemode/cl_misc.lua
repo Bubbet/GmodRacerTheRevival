@@ -48,9 +48,10 @@ function GM:CalcView( ply, origin, angles, fov )
 		) then
 		--VehicleThirdPerson
 		return GAMEMODE:CalcVehicleView( Vehicle, ply, {
-		origin = origin*1, 
+		origin = origin*1-(angles:Forward()*150), 
 		angles = angles*1, 
-		fov = fov
+		fov = fov,
+		drawviewer = true
 		})
 	end
 
@@ -101,7 +102,7 @@ function GM.NewRecord ( Name, Time, Place, Numeric )
 	timer.Simple(1, function ( ) GAMEMODE.IsNewRecord = true; end)
 	timer.Simple(GAMEMODE.NewRecordTime + 1, GAMEMODE.StopNewRecord);
 	RunConsoleCommand("stopsounds");
-	timer.Simple(1, surface.PlaySound, "gmracer/new_record.mp3");
+	timer.Simple(1, function() surface.PlaySound("gmracer/new_record.mp3") end );
 end
 
 function GM.StopNewRecord ( ) GAMEMODE.IsNewRecord = false; end

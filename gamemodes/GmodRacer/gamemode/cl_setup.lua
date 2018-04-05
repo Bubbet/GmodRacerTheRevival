@@ -38,8 +38,8 @@ local function AddMusic ( Name, Time )
 end
 
 AddMusic("music1", 81);
-AddMusic("music2", 56);
-AddMusic("music3", 304);
+AddMusic("music2", 53);
+AddMusic("music3", 162);
 
 AddDisplay(GM.ServerNews, "http://www.pulsareffect.com/");
 

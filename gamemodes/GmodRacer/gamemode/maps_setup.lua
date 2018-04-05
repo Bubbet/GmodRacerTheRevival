@@ -238,6 +238,6 @@ else
 		for i = 1, 9 do
 			timer.Simple(i, function ( ) SetGlobalInt("ChangingToIn", GetGlobalInt("ChangingToIn") - 1) end);
 		end
-		timer.Simple(11, RunConsoleCommand, "changelevel", HighestMap.MapPath);
+		timer.Simple(11, function() RunConsoleCommand("changelevel", HighestMap.MapPath) end );
 	end
 end

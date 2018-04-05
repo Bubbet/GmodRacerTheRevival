@@ -39,36 +39,36 @@ resource.AddFile("resource/fonts/lcd.ttf");
 
 local Folder = string.Replace( GM.Folder, "gamemodes/", "" );
 
-for k, v in pairs(file.Find(Folder.."sound/gmracer/*", "THIRDPARTY")) do
-	resource.AddFile("sound/gmracer/" .. v);
+for k, v in pairs(file.Find("gamemodes/GmodRacer/content/sound/gmracer/*", "THIRDPARTY")) do
+	resource.AddFile("gamemodes/GmodRacer/content/sound/gmracer/" .. v);
 end
 
-for k, v in pairs(file.Find("*.wav", "GAME" .. "sound/vehicles/junker/")) do
-	resource.AddFile("sound/vehicles/junker/" .. v);
+for k, v in pairs(file.Find("gamemodes/GmodRacer/content/sound/junker/*", "THIRDPARTY")) do
+	resource.AddFile("gamemodes/GmodRacer/content/sound/vehicles/junker/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "GAME" .. "materials/gmracer/*")) do
-	resource.AddFile("materials/gmracer/" .. v);
+for k, v in pairs(file.Find("gamemodes/GmodRacer/content/materials/gmracer/*", "THIRDPARTY")) do
+	resource.AddFile("gamemodes/GmodRacer/content/materials/gmracer/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "GAME" .. "materials/maps/")) do
-	resource.AddFile("materials/maps/" .. v);
+for k, v in pairs(file.Find("gamemodes/GmodRacer/content/materials/maps/", "THIRDPARTY")) do
+	resource.AddFile("gamemodes/GmodRacer/content/materials/maps/" .. v);
 end
 
-for k, v in pairs(file.Find(Folder.."materials/buggy_reskins/*", "THIRDPARTY")) do
-	resource.AddFile("materials/buggy_reskins/" .. v);
+for k, v in pairs(file.Find("gamemodes/GmodRacer/content/materials/buggy_reskins/*", "THIRDPARTY")) do
+	resource.AddFile("gamemodes/GmodRacer/content/materials/buggy_reskins/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "GAME" .. "models/carparts/")) do
-	resource.AddFile("models/carparts/" .. v);
+for k, v in pairs(file.Find("gamemodes/GmodRacer/content/models/carparts/*", "THIRDPARTY")) do
+	resource.AddFile("gamemodes/GmodRacer/content/models/carparts/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "GAME" .. "materials/spoilers/")) do
-	resource.AddFile("materials/spoilers/" .. v);
+for k, v in pairs(file.Find("gamemodes/GmodRacer/content/materials/spoilers/*", "THIRDPARTY")) do
+	resource.AddFile("gamemodes/GmodRacer/content/materials/spoilers/" .. v);
 end
 
-for k, v in pairs(file.Find("*", "GAME" .. "materials/models/spoilers/")) do
-	resource.AddFile("materials/models/spoilers/" .. v);
+for k, v in pairs(file.Find("gamemodes/GmodRacer/content/materials/models/spoilers/*", "THIRDPARTY")) do
+	resource.AddFile("gamemodes/GmodRacer/content/materials/models/spoilers/" .. v);
 end
 
 
@@ -85,12 +85,6 @@ GM.SpawnCarParts = true;
 GM.AllowTestVehicle = true;
 GM.AllowVehicleDebris = true;
 
-concommand.Add("gmr_givecash", function(ply, argStr) 
-local arg1 = ply
-local arg2 = argStr
-local arg3 = true
-GAMEMODE.GiveCash(arg1,arg2,arg3) 
-end )
 function GM.GiveCash ( Player, Text, Bool )
 	local ExplodedString = string.Explode(" ", string.lower(Text));
 	

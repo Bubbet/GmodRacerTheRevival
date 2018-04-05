@@ -60,7 +60,7 @@ function ENT:StartTouch( Ent )
 			local Time = 0;
 			for k, v in pairs(GAMEMODE.PlayerVehicles[Ent].Children) do
 				if v and v:IsValid() then
-					timer.Simple(Time, KillPart, v);
+					timer.Simple(Time, function() KillPart(v) end );
 					Time = Time + .5;
 				end
 			end
@@ -71,10 +71,10 @@ function ENT:StartTouch( Ent )
 				Ent:PrintMessage(HUD_PRINTTALK, "New Personal Record!");
 				
 				Ent:SetNetworkedInt("MapRecord", Ent:GetNetworkedInt("RaceTime"));
-				--[[
-				MySQLQuery(SiteDatabaseConnection, "UPDATE `gmr_records` SET `Time`='" .. Ent:GetNetworkedInt("RaceTime") .. "' WHERE `SteamID`='" .. Ent:SteamID() .. "' AND `Map`='" .. game.GetMap() .. "'");
 				
-				local Return, Success, Error = MySQLQuery(SiteDatabaseConnection, "SELECT * FROM `gmr_records` WHERE `Map`='" .. game.GetMap() .. "' ORDER BY `Time` ASC LIMIT 10", mysql.QUERY_FIELDS);
+				sql.Query("UPDATE `gmr_records` SET `Time`='" .. Ent:GetNetworkedInt("RaceTime") .. "' WHERE `SteamID`='" .. Ent:SteamID() .. "' AND `Map`='" .. game.GetMap() .. "'");
+				
+				local Return, Success, Error = sql.Query("SELECT * FROM `gmr_records` WHERE `Map`='" .. game.GetMap() .. "' ORDER BY `Time` ASC LIMIT 10");
 				
 				local TempCompareTop10 = '';
 				for k, v in pairs(Return) do
@@ -110,7 +110,7 @@ function ENT:StartTouch( Ent )
 						timer.Simple(GAMEMODE.NewRecordTime + 1, function ( ) GAMEMODE.IsNewRecord = false; end);
 					end
 				end
-				--]]
+				
 			end
 
 			local FinishedMap = GAMEMODE.FinishRace();

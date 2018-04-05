@@ -26,12 +26,12 @@ end
 usermessage.Hook("ShowTrackMenu", GM.ShowTrackMenu);
 
 function GM.DeleteVehicleAddons ( )
-	for k, v in pairs(GAMEMODE.VehicleAddons) do if v:IsValid() then v:Remove() else v:SetPos(Vector(0,0,0)) end end 
+	for k, v in pairs(GAMEMODE.VehicleAddons) do if v:IsValid() then v:SetNoDraw(true); v:Remove(); else v:SetPos(Vector(0,0,0)) end end 
 	GAMEMODE.VehicleAddons = {};
 end
 
 function GM.DeleteGarageInfo ( )
-	if GAMEMODE.GarageVehicle and GAMEMODE.GarageVehicle:IsValid() then GAMEMODE.GarageVehicle:Remove() end
+	if GAMEMODE.GarageVehicle and GAMEMODE.GarageVehicle:IsValid() then GAMEMODE.GarageVehicle:SetNoDraw(true); GAMEMODE.GarageVehicle:Remove(); end
 	GAMEMODE.VehicleAddons = GAMEMODE.VehicleAddons or {};
 	GAMEMODE.DeleteVehicleAddons();
 	GAMEMODE.ClickZonesSetup = false;

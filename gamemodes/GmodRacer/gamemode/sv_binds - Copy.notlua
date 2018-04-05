@@ -374,20 +374,33 @@ function GM:ShowSpare1 ( Player )
 	if GetGlobalBool("VotingForMap") then return false; end
 	
 	self.PlayerTables[Player].NextSpawn = self.PlayerTables[Player].NextSpawn or 0;
+	self.PlayerTables[Player].NextSpawnCooldown = self.PlayerTables[Player].NextSpawnCooldown or 0;
 	
 	if self.PlayerTables[Player].InPGarage and !Player:InVehicle() then
 		if self.PlayerTables[Player].NextSpawn >= CurTime() then
-			Player:PrintMessage(HUD_PRINTTALK, "Please wait another " .. math.abs(math.Round(CurTime() - self.PlayerTables[Player].NextSpawn)) .. " second(s) before spawning your car again.");
+			if self.PlayerTables[Player].NextSpawnCooldown <= CurTime() then
+				self.PlayerTables[Player].NextSpawnCooldown = CurTime() + 2
+				Player:PrintMessage(HUD_PRINTTALK, "Please wait another " .. math.abs(math.Round(CurTime() - self.PlayerTables[Player].NextSpawn)) .. " second(s) before spawning your car again.");
+			end
 		elseif GAMEMODE.AllowTestVehicle then
-			Player:SpawnJeep(Player:GetPos(), Player:GetAngles() + Angle(0, 90, 0));
-			self.PlayerTables[Player].NextSpawn = CurTime() + 10;
+			if Player.SpawnJeepCooldown >= CurTime() then
+				Player:PrintMessage(HUD_PRINTTALK, "You have 10 seconds to leave the area before spawning your jeep again.")
+			else
+				Player:SpawnJeep(Player:GetPos(), Player:GetAngles() + Angle(0, 90, 0));
+				self.PlayerTables[Player].NextSpawn = CurTime() + 10;
+			end
 		elseif Player and Player:IsValid() and Player:IsPlayer() then 
 			Player:PrintMessage(HUD_PRINTTALK, "The admin has disabled test vehicles. This may be temporary to improve server performance.");
 		end
 	else
-		if Player:GetNetworkedBool("IsCurrentlyRacing") and Player:GetNetworkedInt("CurrentCheckpoint") != GetGlobalInt("TotalNumberCheckpoints") then return false; end
-		Player:SetNetworkedBool("IsQueued", !Player:GetNetworkedBool("IsQueued"));
+		if self.PlayerTables[Player].InPGarage and Player:InVehicle() and (self.PlayerTables[Player].NextSpawn - CurTime())<=0 then
+			Player:GetVehicle():Remove()
+			self.PlayerTables[Player].NextSpawn = CurTime() + 10
+		end
 		
+		if Player:GetNetworkedBool("IsCurrentlyRacing") and Player:GetNetworkedInt("CurrentCheckpoint") != GetGlobalInt("TotalNumberCheckpoints") then return false; end
+		Player:SetNetworkedBool("IsQueued", false);
+		--[[
 		if Player:GetNetworkedBool("IsQueued") then
 			if Player:Team() <= 4 then
 				local OldQueue = self.QueuedPlayers;
@@ -406,6 +419,7 @@ function GM:ShowSpare1 ( Player )
 				if v == Player then self.QueuedPlayers[k] = nil; end
 			end
 		end
+		]]--
 	end
 end
 

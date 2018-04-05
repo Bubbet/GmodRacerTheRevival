@@ -12,13 +12,13 @@ function PlayerMetaTable:IsRacing ( )
 	end
 end
 
-function PlayerMetaTable:GetUsedPart ( Location )
+function PlayerMetaTable:GetUsedPart ( Location ) -- add read from file
 	GAMEMODE.PlayerStats[self] = GAMEMODE.PlayerStats[self] or {};
 
 	return tonumber(GAMEMODE.PlayerStats[self][Location]) or 0;
 end
 
-function PlayerMetaTable:SetUsedPart ( Location, ID )
+function PlayerMetaTable:SetUsedPart ( Location, ID ) -- add write to file
 	GAMEMODE.PlayerStats[self] = GAMEMODE.PlayerStats[self] or {};
 	
 	GAMEMODE.PlayerStats[self][Location] = ID;
@@ -40,6 +40,8 @@ function PlayerMetaTable:GetCash ( ForShow )
 		return GAMEMODE.SmoothedCash;
 	end
 end
+
+concommand.Add("gmr_addcash", function(ply, stringargs, args) player.GetHumans()[tonumber(args[1])]:AddCash(tonumber(args[2])) end, function() return "gmr_addcash" end, "player index, cash value", FCVAR_CHEAT )
 
 function PlayerMetaTable:AddCash ( Value )
 	if !SERVER then return false; end
@@ -160,7 +162,7 @@ function PlayerMetaTable:SpawnJeep ( Location, Angles )
 	GAMEMODE.PlayerVehicles[self]:SetPos(Location);
 	GAMEMODE.PlayerVehicles[self]:SetAngles(Angles);
 	GAMEMODE.PlayerVehicles[self]:Spawn();
-	print(GAMEMODE.PlayerVehicles[self]:GetKeyValues());
+	--print(GAMEMODE.PlayerVehicles[self]:GetKeyValues());
 	GAMEMODE.PlayerVehicles[self]:SetOwner(self);
 	
 	
@@ -199,6 +201,8 @@ function PlayerMetaTable:SpawnJeep ( Location, Angles )
 	end
 	GAMEMODE.PlayerTables[self].LastNOSTime = 0;
 	
+	--thats gay shit
+	--[[
 	if self:Team() == 0 then
 		GAMEMODE.PlayerVehicles[self]:SetMaterial("buggy_reskins/admin_hunts");
 	elseif self:Team() == 1 then
@@ -210,11 +214,12 @@ function PlayerMetaTable:SpawnJeep ( Location, Angles )
 			GAMEMODE.PlayerVehicles[self]:SetMaterial("buggy_reskins/admin_generic");
 		end
 	end
+	]]--
 	
 	self:GetTable().PlayerVehicleBak = GAMEMODE.PlayerVehicles[self];
 
+	--file.Delete("scripts\\vehicles\\gmracer_" .. GAMEMODE.NumJeepsPlaced .. ".txt");
 	file.Delete("scripts\\vehicles\\gmracer_" .. GAMEMODE.NumJeepsPlaced .. ".txt");
-	
 	
 end
 
