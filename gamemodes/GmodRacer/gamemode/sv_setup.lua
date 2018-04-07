@@ -19,10 +19,10 @@ GM.NumRacesRan = 0;
 GM.SpawningRace = false;
 GM.MaxRaces = 10;
 
-if game.GetMap() != "gmr_drag" then
-	GM.PerCash = 50;
+if !string.find(game.GetMap(), "drag")--game.GetMap() != "gmr_drag" then
+	GM.PerCash = 500; -- /10 for base value
 else
-	GM.PerCash = 35;
+	GM.PerCash = 350; -- /10 for base value
 end
 
 
