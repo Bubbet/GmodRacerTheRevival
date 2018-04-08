@@ -363,9 +363,9 @@ function GM:ShowTeam ( Player )
 		if !(GAMEMODE.GarageViewLocationEntity==nil) then
 			umsg.Vector(GAMEMODE.GarageViewLocationEntity:GetPos());
 			umsg.Vector(GAMEMODE.GarageLocationEntity:GetPos());
-		elseif !(GAMEMODE.FuncGarageLocationEntity==nil) then
-			umsg.Vector(GAMEMODE.FuncGarageLocationEntity:GetPos());
-			umsg.Vector(GAMEMODE.FuncGarageLocationEntity:GetPos()-Vector(100,100,100));
+		-- elseif !(GAMEMODE.FuncGarageLocationEntity==nil) then
+			-- umsg.Vector(GAMEMODE.FuncGarageLocationEntity:GetPos());
+			-- umsg.Vector(GAMEMODE.FuncGarageLocationEntity:GetPos()-Vector(100,100,100));
 		else
 			umsg.Vector(Player:GetEyeTraceNoCursor().HitPos);
 			umsg.Vector(Player:GetEyeTraceNoCursor().HitPos-Vector(100,100,100));
